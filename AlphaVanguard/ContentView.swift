@@ -19,8 +19,9 @@ struct ContentView: View {
         .task {
             do {
                 let quote = try JSONDecoder().decode(GlobalQuote.self, from: globalQuoteData)
-                print(quote.quoteSymbol)
-                print(quote.quoteOpen)
+                for parameter in GlobalQuoteParameter.allCases {
+                    print("\(parameter.text.capitalized): \(quote.stringValue(for: parameter))")
+                }
                 
             } catch {
                 print(error.localizedDescription)

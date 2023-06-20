@@ -7,24 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01B3E0582A4200190004C6EE /* GlobalQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B3E0572A4200190004C6EE /* GlobalQuote.swift */; };
 		2C5B6E442A41A31B00A81297 /* AlphaVanguardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5B6E432A41A31B00A81297 /* AlphaVanguardApp.swift */; };
 		2C5B6E462A41A31B00A81297 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5B6E452A41A31B00A81297 /* ContentView.swift */; };
 		2C5B6E482A41A31C00A81297 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C5B6E472A41A31C00A81297 /* Assets.xcassets */; };
 		2C5B6E4B2A41A31C00A81297 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C5B6E4A2A41A31C00A81297 /* Preview Assets.xcassets */; };
-		2C5B6E542A41A32D00A81297 /* GlobalQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5B6E512A41A32D00A81297 /* GlobalQuote.swift */; };
+		2C5B6E542A41A32D00A81297 /* GlobalQuoteDeprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5B6E512A41A32D00A81297 /* GlobalQuoteDeprecated.swift */; };
 		2C5B6E552A41A32D00A81297 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5B6E522A41A32D00A81297 /* Data.swift */; };
-		2C5B6E562A41A32D00A81297 /* GlobalQuote-Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5B6E532A41A32D00A81297 /* GlobalQuote-Enum.swift */; };
+		2C5B6E562A41A32D00A81297 /* GlobalQuoteDeprecated-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5B6E532A41A32D00A81297 /* GlobalQuoteDeprecated-Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01B3E0572A4200190004C6EE /* GlobalQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalQuote.swift; sourceTree = "<group>"; };
 		2C5B6E402A41A31B00A81297 /* AlphaVanguard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlphaVanguard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5B6E432A41A31B00A81297 /* AlphaVanguardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaVanguardApp.swift; sourceTree = "<group>"; };
 		2C5B6E452A41A31B00A81297 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2C5B6E472A41A31C00A81297 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C5B6E4A2A41A31C00A81297 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2C5B6E512A41A32D00A81297 /* GlobalQuote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalQuote.swift; sourceTree = "<group>"; };
+		2C5B6E512A41A32D00A81297 /* GlobalQuoteDeprecated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalQuoteDeprecated.swift; sourceTree = "<group>"; };
 		2C5B6E522A41A32D00A81297 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		2C5B6E532A41A32D00A81297 /* GlobalQuote-Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GlobalQuote-Enum.swift"; sourceTree = "<group>"; };
+		2C5B6E532A41A32D00A81297 /* GlobalQuoteDeprecated-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GlobalQuoteDeprecated-Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +62,9 @@
 				2C5B6E432A41A31B00A81297 /* AlphaVanguardApp.swift */,
 				2C5B6E452A41A31B00A81297 /* ContentView.swift */,
 				2C5B6E522A41A32D00A81297 /* Data.swift */,
-				2C5B6E532A41A32D00A81297 /* GlobalQuote-Enum.swift */,
-				2C5B6E512A41A32D00A81297 /* GlobalQuote.swift */,
+				2C5B6E532A41A32D00A81297 /* GlobalQuoteDeprecated-Extensions.swift */,
+				2C5B6E512A41A32D00A81297 /* GlobalQuoteDeprecated.swift */,
+				01B3E0572A4200190004C6EE /* GlobalQuote.swift */,
 				2C5B6E472A41A31C00A81297 /* Assets.xcassets */,
 				2C5B6E492A41A31C00A81297 /* Preview Content */,
 			);
@@ -148,8 +151,9 @@
 			files = (
 				2C5B6E462A41A31B00A81297 /* ContentView.swift in Sources */,
 				2C5B6E442A41A31B00A81297 /* AlphaVanguardApp.swift in Sources */,
-				2C5B6E562A41A32D00A81297 /* GlobalQuote-Enum.swift in Sources */,
-				2C5B6E542A41A32D00A81297 /* GlobalQuote.swift in Sources */,
+				2C5B6E562A41A32D00A81297 /* GlobalQuoteDeprecated-Extensions.swift in Sources */,
+				2C5B6E542A41A32D00A81297 /* GlobalQuoteDeprecated.swift in Sources */,
+				01B3E0582A4200190004C6EE /* GlobalQuote.swift in Sources */,
 				2C5B6E552A41A32D00A81297 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
