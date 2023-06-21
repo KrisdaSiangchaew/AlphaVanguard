@@ -62,9 +62,8 @@
 				2C5B6E432A41A31B00A81297 /* AlphaVanguardApp.swift */,
 				2C5B6E452A41A31B00A81297 /* ContentView.swift */,
 				2C5B6E522A41A32D00A81297 /* Data.swift */,
-				2C5B6E532A41A32D00A81297 /* GlobalQuoteDeprecated-Extensions.swift */,
-				2C5B6E512A41A32D00A81297 /* GlobalQuoteDeprecated.swift */,
 				01B3E0572A4200190004C6EE /* GlobalQuote.swift */,
+				2C95928F2A42822A001FEE5E /* Deprecated */,
 				2C5B6E472A41A31C00A81297 /* Assets.xcassets */,
 				2C5B6E492A41A31C00A81297 /* Preview Content */,
 			);
@@ -77,6 +76,15 @@
 				2C5B6E4A2A41A31C00A81297 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2C95928F2A42822A001FEE5E /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				2C5B6E532A41A32D00A81297 /* GlobalQuoteDeprecated-Extensions.swift */,
+				2C5B6E512A41A32D00A81297 /* GlobalQuoteDeprecated.swift */,
+			);
+			path = Deprecated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
