@@ -8,15 +8,15 @@
 import Foundation
 
 public struct GlobalQuote: Decodable {
-    private var data: [String : String] = [:]
+    private var globalQuoteData: [String : String] = [:]
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: GlobalQuoteParameter.HeaderKeys.self)
-        self.data = try container.decode([String : String].self, forKey: .header)
+        self.globalQuoteData = try container.decode([String : String].self, forKey: .globalQuote)
     }
     
     public func stringValue(for parameter: GlobalQuoteParameter) -> String {
-        data[parameter.rawValue] ?? "-"
+        globalQuoteData[parameter.rawValue] ?? "-"
     }
 }
 
@@ -33,7 +33,7 @@ public enum GlobalQuoteParameter: String, Codable, CaseIterable {
     case changePercent = "10. change percent"
     
     enum HeaderKeys: String, CodingKey {
-        case header = "Global Quote"
+        case globalQuote = "Global Quote"
     }
     
     public var text: String {
