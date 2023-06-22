@@ -8,26 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var globalQuote = GlobalQuote()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text(globalQuote.symbolString)
+            Text(globalQuote.latestTradingDayString)
+            Text(globalQuote.latestTradingDay ?? .now, format: .dateTime)
         }
         .padding()
         .task {
             do {
-                let quote = try JSONDecoder().decode(GlobalQuote.self, from: globalQuoteData)
-                for parameter in GlobalQuoteParameter.allCases {
-                    print("\(parameter.text.capitalized): \(quote.stringValue(for: parameter))")
-                }
-                
-                let timeSeriesHeader = try JSONDecoder().decode(TSDailyAdjustedMeta.self, from: TSDailyAdjustedJson)
-                print(timeSeriesHeader)
-                
-                let timeSeriesQuote = try JSONDecoder().decode(TSDailyAdjustedQuote.self, from: timeSeriesDailyAdjustedQuote)
-                print(timeSeriesQuote)
+                self.globalQuote = try JSONDecoder().decode(GlobalQuote.self, from: globalQuoteJson)
                 
             } catch {
                 print(error.localizedDescription)
