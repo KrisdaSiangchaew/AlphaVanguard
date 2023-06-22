@@ -23,7 +23,7 @@ struct ContentView: View {
                     print("\(parameter.text.capitalized): \(quote.stringValue(for: parameter))")
                 }
                 
-                let timeSeriesHeader = try JSONDecoder().decode(TSDailyAdjustedMeta.self, from: timeSeriesDailyAdjustedData)
+                let timeSeriesHeader = try JSONDecoder().decode(TSDailyAdjustedMeta.self, from: TSDailyAdjustedJson)
                 print(timeSeriesHeader)
                 
                 let timeSeriesQuote = try JSONDecoder().decode(TSDailyAdjustedQuote.self, from: timeSeriesDailyAdjustedQuote)
