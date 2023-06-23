@@ -12,14 +12,13 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text(globalQuote.symbolString)
-            Text(globalQuote.latestTradingDayString)
-            Text(globalQuote.latestTradingDay ?? .now, format: .dateTime)
+            Text(globalQuote.symbolString.defaultString)
+            Text(globalQuote.latestTradingDayString.defaultString)
         }
         .padding()
         .task {
             do {
-                self.globalQuote = try JSONDecoder().decode(GlobalQuote.self, from: globalQuoteJson)
+                self.globalQuote = try JSONDecoder().decode(GlobalQuote.self, from: MockGlobalQuoteJson)
                 
             } catch {
                 print(error.localizedDescription)
