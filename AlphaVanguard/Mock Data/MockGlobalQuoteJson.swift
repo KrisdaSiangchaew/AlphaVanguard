@@ -7,7 +7,7 @@
 
 import Foundation
 
-let MockGlobalQuoteJson =
+let mockGlobalQuoteJson =
 """
 {
     "Global Quote": {

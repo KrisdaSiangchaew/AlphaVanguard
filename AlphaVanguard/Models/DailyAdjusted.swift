@@ -11,8 +11,8 @@
 import Foundation
 
 public struct DailyAdjusted: Decodable {
-    public var dailyQuotes: [DailyQuote] = []
-    public let metaData: MetaData
+    public var dailyQuotes: [DailyQuote]
+    public var metaData: MetaData
     
     enum CodingKeys: String, CodingKey {
         case timeSeries = "Time Series (Daily)"
@@ -31,6 +31,7 @@ public struct DailyAdjusted: Decodable {
     }
     
     public init(from decoder: Decoder) throws {
+        self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let meta = try container.decode([String : String].self, forKey: .metaData)
         let quotes = try container.decode([String : [String : String]].self, forKey: .timeSeries)
@@ -42,10 +43,17 @@ public struct DailyAdjusted: Decodable {
             dailyQuotes.append(dailyQuote)
         }
     }
+    
+    public init() {
+        self.dailyQuotes = []
+        self.metaData = MetaData()
+    }
 }
     
 extension DailyAdjusted {
-    public struct DailyQuote: Comparable {
+    public struct DailyQuote: Comparable, Identifiable {
+        public let id = UUID()
+        
         public var date: String? { quoteDate }
         public var open: Double? { openString.double }
         public var high: Double? { highString.double }
@@ -78,8 +86,14 @@ extension DailyAdjusted {
         }
         
         init(date: String, quote: [String : String]) {
+            self.init()
             self.quoteDate = date
             self.quote = quote
+        }
+        
+        init() {
+            self.quoteDate = ""
+            self.quote = [:]
         }
         
         public static func < (lhs: DailyAdjusted.DailyQuote, rhs: DailyAdjusted.DailyQuote) -> Bool {
@@ -90,8 +104,8 @@ extension DailyAdjusted {
             return format.date(from: lhsDate) ?? .now < format.date(from: rhsDate) ?? .now
         }
         
-        private let quoteDate: String
-        private let quote: [String : String]
+        private var quoteDate: String
+        private var quote: [String : String]
     }
     
     public struct MetaData {
@@ -116,9 +130,14 @@ extension DailyAdjusted {
         }
         
         init(dict: [String : String]) {
+            self.init()
             self.dict = dict
         }
         
-        private let dict: [String: String]
+        init() {
+            self.dict = [:]
+        }
+        
+        private var dict: [String: String]
     }
 }

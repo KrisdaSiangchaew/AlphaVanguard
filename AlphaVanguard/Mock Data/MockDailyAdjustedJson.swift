@@ -20330,4 +20330,4 @@ let mockDailyAdjustedJson =
         }
     }
 }
-""".data(using: .utf8)
+""".data(using: .utf8)!

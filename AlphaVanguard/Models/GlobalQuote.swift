@@ -19,6 +19,9 @@ public struct GlobalQuote: Decodable {
     public var price: Double? { priceString.double }
     public var volume: Int? { volumeString.int }
     public var latestTradingDay: Date? { latestTradingDayString.date }
+    public var previousClose: Double? { previousCloseString.double }
+    public var change: Double? { changeString.double }
+    public var changePercent: String? { changePercentString }
     
     public var symbolString: String? { data[DataKeys.symbol.rawValue] }
     public var openString: String? { data[DataKeys.open.rawValue] }
@@ -27,6 +30,9 @@ public struct GlobalQuote: Decodable {
     public var priceString: String? { data[DataKeys.price.rawValue] }
     public var volumeString: String? { data[DataKeys.volume.rawValue] }
     public var latestTradingDayString: String? { data[DataKeys.latestTradingDay.rawValue] }
+    public var previousCloseString: String? { data[DataKeys.previousClose.rawValue] }
+    public var changeString: String? { data[DataKeys.change.rawValue] }
+    public var changePercentString: String? { data[DataKeys.changePercent.rawValue] }
     
     public enum DataKeys: String, Codable, CaseIterable {
         case symbol = "01. symbol"
