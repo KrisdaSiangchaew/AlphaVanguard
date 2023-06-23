@@ -20,7 +20,7 @@ struct ContentView: View {
             Text(globalQuote.latestTradingDayString.defaultString)
             Text(dailyAdjusted.metaData.symbol.defaultString)
             List {
-                ForEach(dailyAdjusted.dailyQuotes.sorted().reversed()) { quote in
+                ForEach(dailyAdjusted.quotes.sorted().reversed()) { quote in
                     HStack {
                         Text(quote.dateString.defaultString)
                             .font(.caption)
@@ -36,6 +36,8 @@ struct ContentView: View {
                 self.overview = try JSONDecoder().decode(Overview.self, from: mockOverviewJson)
                 self.globalQuote = try JSONDecoder().decode(GlobalQuote.self, from: mockGlobalQuoteJson)
                 self.dailyAdjusted = try JSONDecoder().decode(DailyAdjusted.self, from: mockDailyAdjustedJson)
+                
+                print(dailyAdjusted.error?.rawValue ?? "None")
                 
             } catch {
                 print(error.localizedDescription)
