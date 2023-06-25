@@ -7,37 +7,40 @@
 
 import Foundation
 
-public struct MetaData {
-    public var information: String? { informationString }
-    public var symbol: String? { symbolString }
-    public var lastRefreshed: Date? { lastRefreshedString.date }
-    public var outputSize: String? { outputSizeString }
-    public var timeZone: String? { timeZoneString }
+public struct MetaData: Decodable, AVDataModelable {
+    typealias DataKeysEnum = DataKeys
     
-    public var informationString: String? { metaData[DataKeys.information.rawValue] }
-    public var symbolString: String? { metaData[DataKeys.symbol.rawValue] }
-    public var lastRefreshedString: String? { metaData[DataKeys.lastRefreshed.rawValue] }
-    public var outputSizeString: String? { metaData[DataKeys.outputSize.rawValue] }
-    public var timeZoneString: String? { metaData[DataKeys.timeZone.rawValue] }
+    var error: APIError?
     
-    enum DataKeys: String, CaseIterable {
+    public enum DataKeys: String, CaseIterable {
         case information = "1. Information"
         case symbol = "2. Symbol"
         case lastRefreshed = "3. Last Refreshed"
         case outputSize = "4. Output Size"
         case timeZone = "5. Time Zone"
+        
+        public var name: String {
+            self.rawValue.camelCaseToWords()
+        }
     }
     
-    init(dict: [String : String]) {
+    internal var data: [String: String]
+    
+    public init(from decoder: Decoder) throws {
         self.init()
-        self.metaData = dict
+        
+        do {
+            let container = try decoder.singleValueContainer()
+            self.data = try container.decode([String : String].self)
+        } catch {
+            let errorContainer = try decoder.singleValueContainer()
+            let apiError = try errorContainer.decode([String : String].self)
+            let message = apiError.values.first ?? "Unknown"
+            self.error = APIError(rawValue: message)
+        }
     }
     
-    init() {
-        self.metaData = [:]
-    }
-    
-    private var metaData: [String: String]
+    init() { self.data = [:] }
 }
 
 extension MetaData: Identifiable {

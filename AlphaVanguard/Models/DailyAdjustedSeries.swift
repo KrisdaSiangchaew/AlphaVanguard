@@ -10,9 +10,9 @@
 
 import Foundation
 
-public struct DailyAdjusted: Decodable {
+public struct DailyAdjustedSeries: Decodable {
     public var metaData: MetaData
-    public var quotes: [Quote]
+    public var quotes: [DailyQuote]
     public var error: APIError?
     
     enum CodingKeys: String, CodingKey {
@@ -22,13 +22,13 @@ public struct DailyAdjusted: Decodable {
     
     public init(from decoder: Decoder) throws {
         self.init()
+        
         do {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            let meta = try container.decode([String : String].self, forKey: .metaData)
+            self.metaData = try container.decode(MetaData.self, forKey: .metaData)
             let datedQuotes = try container.decode([String : [String : String]].self, forKey: .timeSeries)
-            self.metaData = MetaData(dict: meta)
             for quote in datedQuotes {
-                let dailyQuote = Quote(date: quote.key, quote: quote.value)
+                let dailyQuote = DailyQuote(date: quote.key, quote: quote.value)
                 self.quotes.append(dailyQuote)
             }
         } catch {
@@ -46,6 +46,6 @@ public struct DailyAdjusted: Decodable {
     }
 }
 
-extension DailyAdjusted: Identifiable {
+extension DailyAdjustedSeries: Identifiable {
     public var id: UUID { UUID() }
 }

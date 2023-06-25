@@ -51,7 +51,6 @@ public struct GlobalQuote: Decodable, AVDataModelable {
             let message = apiError.values.first ?? "Unknown"
             self.error = APIError(rawValue: message)
         }
-        
     }
     
     init() { self.data = [:] }
