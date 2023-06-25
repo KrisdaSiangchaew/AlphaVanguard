@@ -12,6 +12,9 @@
 		01DDBEA62A45F78900DD6F76 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DDBEA52A45F78900DD6F76 /* Quote.swift */; };
 		01DDBEA82A45F7B900DD6F76 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DDBEA72A45F7B900DD6F76 /* MetaData.swift */; };
 		01DDBEAA2A45FE2E00DD6F76 /* MockErrorJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DDBEA92A45FE2E00DD6F76 /* MockErrorJson.swift */; };
+		01DDBEAC2A47D37100DD6F76 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DDBEAB2A47D37100DD6F76 /* APIError.swift */; };
+		01DDBEAE2A4881D600DD6F76 /* AVDataModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DDBEAD2A4881D600DD6F76 /* AVDataModelable.swift */; };
+		01DDBEB22A4895BC00DD6F76 /* String-CamelCaseToWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DDBEB12A4895BC00DD6F76 /* String-CamelCaseToWords.swift */; };
 		2C41E45A2A454D1C009858BC /* String-Nil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C41E4592A454D1C009858BC /* String-Nil.swift */; };
 		2C41E45D2A457B22009858BC /* DailyAdjusted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C41E45C2A457B22009858BC /* DailyAdjusted.swift */; };
 		2C41E4602A457BD5009858BC /* MockDailyAdjustedJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C41E45F2A457BD5009858BC /* MockDailyAdjustedJson.swift */; };
@@ -30,6 +33,9 @@
 		01DDBEA52A45F78900DD6F76 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		01DDBEA72A45F7B900DD6F76 /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 		01DDBEA92A45FE2E00DD6F76 /* MockErrorJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorJson.swift; sourceTree = "<group>"; };
+		01DDBEAB2A47D37100DD6F76 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		01DDBEAD2A4881D600DD6F76 /* AVDataModelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVDataModelable.swift; sourceTree = "<group>"; };
+		01DDBEB12A4895BC00DD6F76 /* String-CamelCaseToWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-CamelCaseToWords.swift"; sourceTree = "<group>"; };
 		2C41E4592A454D1C009858BC /* String-Nil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-Nil.swift"; sourceTree = "<group>"; };
 		2C41E45C2A457B22009858BC /* DailyAdjusted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyAdjusted.swift; sourceTree = "<group>"; };
 		2C41E45F2A457BD5009858BC /* MockDailyAdjustedJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDailyAdjustedJson.swift; sourceTree = "<group>"; };
@@ -60,8 +66,10 @@
 				2C41E4652A4590B8009858BC /* Overview.swift */,
 				01B3E0572A4200190004C6EE /* GlobalQuote.swift */,
 				2C41E45C2A457B22009858BC /* DailyAdjusted.swift */,
+				01DDBEAB2A47D37100DD6F76 /* APIError.swift */,
 				01DDBEA52A45F78900DD6F76 /* Quote.swift */,
 				01DDBEA72A45F7B900DD6F76 /* MetaData.swift */,
+				01DDBEAD2A4881D600DD6F76 /* AVDataModelable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -70,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				2C41E4592A454D1C009858BC /* String-Nil.swift */,
+				01DDBEB12A4895BC00DD6F76 /* String-CamelCaseToWords.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -204,9 +213,12 @@
 				01DDBEA22A45F0B000DD6F76 /* MockWeeklyAdjustedJson.swift in Sources */,
 				01DDBEAA2A45FE2E00DD6F76 /* MockErrorJson.swift in Sources */,
 				2C41E4622A457BF2009858BC /* MockGlobalQuoteJson.swift in Sources */,
+				01DDBEAE2A4881D600DD6F76 /* AVDataModelable.swift in Sources */,
 				2C41E45D2A457B22009858BC /* DailyAdjusted.swift in Sources */,
+				01DDBEB22A4895BC00DD6F76 /* String-CamelCaseToWords.swift in Sources */,
 				01DDBEA82A45F7B900DD6F76 /* MetaData.swift in Sources */,
 				01B3E0582A4200190004C6EE /* GlobalQuote.swift in Sources */,
+				01DDBEAC2A47D37100DD6F76 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+struct OverviewView: View {
+    let data: Overview
+    
+    @ViewBuilder
+    func row(key: Overview.DataKeys) -> some View {
+        HStack {
+            Text(key.name)
+            Text(data.value(for: key).defaultString)
+        }
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            List {
+                ForEach(data.allKeys, id: \.self) { key in
+                    row(key: key)
+                }
+            }
+        }
+    }
+}
+
 struct ContentView: View {
     @State private var overview = Overview()
     @State private var globalQuote = GlobalQuote()
@@ -14,21 +36,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text(globalQuote.symbolString.defaultString)
-            Text(globalQuote.previousCloseString.defaultString)
-            Text(globalQuote.changePercentString.defaultString)
-            Text(globalQuote.latestTradingDayString.defaultString)
-            Text(dailyAdjusted.metaData.symbol.defaultString)
-            List {
-                ForEach(dailyAdjusted.quotes.sorted().reversed()) { quote in
-                    HStack {
-                        Text(quote.dateString.defaultString)
-                            .font(.caption)
-                        Text("Open: \(overview.currency.defaultString)")
-                        Text(quote.openString.defaultString)
-                    }
-                }
-            }
+            OverviewView(data: overview)
         }
         .padding()
         .task {
@@ -37,7 +45,7 @@ struct ContentView: View {
                 self.globalQuote = try JSONDecoder().decode(GlobalQuote.self, from: mockGlobalQuoteJson)
                 self.dailyAdjusted = try JSONDecoder().decode(DailyAdjusted.self, from: mockDailyAdjustedJson)
                 
-                print(dailyAdjusted.error?.rawValue ?? "None")
+                print(dailyAdjusted.error?.rawValue ?? "No error")
                 
             } catch {
                 print(error.localizedDescription)

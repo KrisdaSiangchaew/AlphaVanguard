@@ -11,23 +11,6 @@
 import Foundation
 
 public struct DailyAdjusted: Decodable {
-    public enum APIError: Error, RawRepresentable {
-        public var rawValue: String {
-            switch self {
-            case .errorMessage(let message):
-                return "Error: \(message)"
-            default:
-                return "No error"
-            }
-        }
-        
-        public init?(rawValue: String) {
-            self = .errorMessage(rawValue)
-        }
-        case none
-        case errorMessage(String)
-    }
-    
     public var metaData: MetaData
     public var quotes: [Quote]
     public var error: APIError?
@@ -40,21 +23,19 @@ public struct DailyAdjusted: Decodable {
     public init(from decoder: Decoder) throws {
         self.init()
         do {
-            let errorContainer = try decoder.singleValueContainer()
-            let apiError = try errorContainer.decode([String : String].self)
-            let message = apiError.values.first ?? "Unknown"
-            self.error = APIError(rawValue: message)
-        } catch {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let meta = try container.decode([String : String].self, forKey: .metaData)
             let datedQuotes = try container.decode([String : [String : String]].self, forKey: .timeSeries)
-            
             self.metaData = MetaData(dict: meta)
-            
             for quote in datedQuotes {
                 let dailyQuote = Quote(date: quote.key, quote: quote.value)
                 self.quotes.append(dailyQuote)
             }
+        } catch {
+            let errorContainer = try decoder.singleValueContainer()
+            let apiError = try errorContainer.decode([String : String].self)
+            let message = apiError.values.first ?? "Unknown"
+            self.error = APIError(rawValue: message)
         }
     }
     
@@ -63,4 +44,8 @@ public struct DailyAdjusted: Decodable {
         self.metaData = MetaData()
         self.error = nil
     }
+}
+
+extension DailyAdjusted: Identifiable {
+    public var id: UUID { UUID() }
 }

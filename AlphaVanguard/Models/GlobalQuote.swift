@@ -12,6 +12,8 @@
 import Foundation
 
 public struct GlobalQuote: Decodable {
+    public var error: APIError?
+    
     public var symbol: String? { symbolString }
     public var open: Double? { data[DataKeys.open.rawValue].double }
     public var high: Double? { highString.double }
@@ -52,8 +54,16 @@ public struct GlobalQuote: Decodable {
     }
     
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.data = try container.decode([String : String].self, forKey: .globalQuote)
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.data = try container.decode([String : String].self, forKey: .globalQuote)
+        } catch {
+            let errorContainer = try decoder.singleValueContainer()
+            let apiError = try errorContainer.decode([String : String].self)
+            let message = apiError.values.first ?? "Unknown"
+            self.error = APIError(rawValue: message)
+        }
+        
     }
     
     init() { }
@@ -81,5 +91,9 @@ extension GlobalQuote {
         format.dateFormat = "yyyy-MM-dd"
         return format.date(from: value)
     }
+}
+
+extension GlobalQuote: Identifiable {
+    public var id: UUID { UUID() }
 }
 

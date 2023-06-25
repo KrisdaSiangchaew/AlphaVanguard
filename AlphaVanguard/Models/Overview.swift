@@ -7,32 +7,46 @@
 
 import Foundation
 
-public struct Overview: Decodable, Identifiable {
-    public let id = UUID()
-    public var symbol: String? { symbolString }
-    public var exchange: String? { exchangeString }
-    public var currency: String? { currencyString }
-    
-    public var symbolString: String? { data[DataKeys.symbol.rawValue] }
-    public var exchangeString: String? { data[DataKeys.exchange.rawValue] }
-    public var currencyString: String? { data[DataKeys.currency.rawValue] }
+public struct Overview: Decodable, AVDataModelable {
+    typealias DataKeysEnum = DataKeys
     
     public enum DataKeys: String, Codable, CaseIterable {
         case symbol = "Symbol"
+        case assetType = "AssetType"
         case name = "Name"
-        case exchange = "NYSE"
+        case description = "Description"
+        case exchange = "Exchange"
         case currency = "Currency"
         case country = "Country"
         case sector = "Sector"
         case industry = "Industry"
         case latestQuarter = "LatestQuarter"
         case marketCapitalization =   "MarketCapitalization"
-        case ebita = "EBITDA"
+        case ebitda = "EBITDA"
         case peRatio = "PERatio"
         case pegRatio = "PEGRatio"
         case dividendPerShare = "DividendPerShare"
         case eps = "EPS"
+        case beta = "Beta"
+        case fiftyTwoWeekHigh = "52WeekHigh"
+        case fiftyTwoWeekLow = "52WeekLow"
+        case fiftyDayMovingAverage = "50DayMovingAverage"
+        case twoHundredDayMovingAverage = "200DayMovingAverage"
+        case dividendDate = "DividendDate"
+        case exDividendDate = "ExDividendDate"
+        
+        public var name: String {
+            switch self {
+            case .ebitda: return "EBITDA"
+            case .peRatio: return "PE Ratio"
+            case .pegRatio: return "PEG Ratio"
+            case .eps: return "EPS"
+            default: return self.rawValue.camelCaseToWords()
+            }
+        }
     }
+    
+    internal var data: [String : String]
     
     public init(from decoder: Decoder) throws {
         self.init()
@@ -41,6 +55,8 @@ public struct Overview: Decodable, Identifiable {
     }
     
     init() { self.data = [:] }
-    
-    private var data: [String : String]
+}
+
+extension Overview: Identifiable {
+    public var id: UUID { UUID() }
 }

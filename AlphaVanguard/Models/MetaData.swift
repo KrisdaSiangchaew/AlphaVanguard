@@ -39,3 +39,7 @@ public struct MetaData {
     
     private var metaData: [String: String]
 }
+
+extension MetaData: Identifiable {
+    public var id: UUID { UUID() }
+}
