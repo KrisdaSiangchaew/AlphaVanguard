@@ -10,6 +10,8 @@ import Foundation
 public struct Overview: Decodable, AVDataModelable {
     typealias DataKeysEnum = DataKeys
     
+    public var error: APIError?
+
     public enum DataKeys: String, Codable, CaseIterable {
         case symbol = "Symbol"
         case assetType = "AssetType"
@@ -50,8 +52,16 @@ public struct Overview: Decodable, AVDataModelable {
     
     public init(from decoder: Decoder) throws {
         self.init()
-        let container = try decoder.singleValueContainer()
-        self.data = try container.decode([String : String].self)
+        
+        do {
+            let container = try decoder.singleValueContainer()
+            self.data = try container.decode([String : String].self)
+        } catch {
+            let errorContainer = try decoder.singleValueContainer()
+            let apiError = try errorContainer.decode([String : String].self)
+            let message = apiError.values.first ?? "Unknown"
+            self.error = APIError(rawValue: message)
+        }
     }
     
     init() { self.data = [:] }

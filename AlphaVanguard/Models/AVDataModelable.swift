@@ -10,6 +10,7 @@ import Foundation
 protocol AVDataModelable {
     associatedtype DataKeysEnum: CaseIterable, RawRepresentable where DataKeysEnum.RawValue: StringProtocol
     var data: [String : String] { get set }
+    var error: APIError? { get set }
 }
 
 extension AVDataModelable {

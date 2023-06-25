@@ -11,30 +11,10 @@
 
 import Foundation
 
-public struct GlobalQuote: Decodable {
+public struct GlobalQuote: Decodable, AVDataModelable {
+    typealias DataKeysEnum = DataKeys
+    
     public var error: APIError?
-    
-    public var symbol: String? { symbolString }
-    public var open: Double? { data[DataKeys.open.rawValue].double }
-    public var high: Double? { highString.double }
-    public var low: Double? { lowString.double }
-    public var price: Double? { priceString.double }
-    public var volume: Int? { volumeString.int }
-    public var latestTradingDay: Date? { latestTradingDayString.date }
-    public var previousClose: Double? { previousCloseString.double }
-    public var change: Double? { changeString.double }
-    public var changePercent: String? { changePercentString }
-    
-    public var symbolString: String? { data[DataKeys.symbol.rawValue] }
-    public var openString: String? { data[DataKeys.open.rawValue] }
-    public var highString: String? { data[DataKeys.high.rawValue] }
-    public var lowString: String? { data[DataKeys.low.rawValue] }
-    public var priceString: String? { data[DataKeys.price.rawValue] }
-    public var volumeString: String? { data[DataKeys.volume.rawValue] }
-    public var latestTradingDayString: String? { data[DataKeys.latestTradingDay.rawValue] }
-    public var previousCloseString: String? { data[DataKeys.previousClose.rawValue] }
-    public var changeString: String? { data[DataKeys.change.rawValue] }
-    public var changePercentString: String? { data[DataKeys.changePercent.rawValue] }
     
     public enum DataKeys: String, Codable, CaseIterable {
         case symbol = "01. symbol"
@@ -47,13 +27,21 @@ public struct GlobalQuote: Decodable {
         case previousClose = "08. previous close"
         case change = "09. change"
         case changePercent = "10. change percent"
+        
+        public var name: String {
+            self.rawValue.camelCaseToWords()
+        }
     }
     
     enum CodingKeys: String, CodingKey {
         case globalQuote = "Global Quote"
     }
     
+    internal var data: [String : String]
+    
     public init(from decoder: Decoder) throws {
+        self.init()
+        
         do {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.data = try container.decode([String : String].self, forKey: .globalQuote)
@@ -66,31 +54,7 @@ public struct GlobalQuote: Decodable {
         
     }
     
-    init() { }
-
-    private var data: [String : String] = [:]
-}
-
-extension GlobalQuote {
-    private func double(_ key: DataKeys) -> Double? {
-        let key = key.rawValue
-        guard let value = data[key] else { return nil }
-        return Double(value)
-    }
-    
-    private func int(_ key: DataKeys) -> Int? {
-        let key = key.rawValue
-        guard let value = data[key] else { return nil }
-        return Int(value)
-    }
-    
-    private func date(_ key: DataKeys) -> Date? {
-        let key = key.rawValue
-        guard let value = data[key] else { return nil }
-        let format = DateFormatter()
-        format.dateFormat = "yyyy-MM-dd"
-        return format.date(from: value)
-    }
+    init() { self.data = [:] }
 }
 
 extension GlobalQuote: Identifiable {

@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+struct GlobalQuoteView: View {
+    let data: GlobalQuote
+    
+    @ViewBuilder
+    func row(key: GlobalQuote.DataKeys) -> some View {
+        HStack {
+            Text(key.name)
+            Text(data.value(for: key).defaultString)
+        }
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            List {
+                ForEach(data.allKeys, id: \.self) { key in
+                    row(key: key)
+                }
+            }
+        }
+    }
+}
+
 struct OverviewView: View {
     let data: Overview
     
@@ -36,6 +58,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            GlobalQuoteView(data: globalQuote)
             OverviewView(data: overview)
         }
         .padding()
