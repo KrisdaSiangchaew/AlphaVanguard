@@ -48,7 +48,7 @@ public struct Overview: Decodable, AVDataModelable {
         }
     }
     
-    internal var data: [String : String]
+    internal var data: [String : String]?
     
     public init(from decoder: Decoder) throws {
         self.init()

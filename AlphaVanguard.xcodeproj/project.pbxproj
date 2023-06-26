@@ -60,16 +60,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C126DA22A492BCC0041892F /* TimeSeries */ = {
+			isa = PBXGroup;
+			children = (
+				2C41E45C2A457B22009858BC /* DailyAdjustedSeries.swift */,
+				01DDBEA52A45F78900DD6F76 /* DailyQuote.swift */,
+				01DDBEA72A45F7B900DD6F76 /* MetaData.swift */,
+			);
+			path = TimeSeries;
+			sourceTree = "<group>";
+		};
 		2C41E4572A454975009858BC /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				2C41E4652A4590B8009858BC /* Overview.swift */,
 				01B3E0572A4200190004C6EE /* GlobalQuote.swift */,
-				2C41E45C2A457B22009858BC /* DailyAdjustedSeries.swift */,
-				01DDBEAB2A47D37100DD6F76 /* APIError.swift */,
-				01DDBEA52A45F78900DD6F76 /* DailyQuote.swift */,
-				01DDBEA72A45F7B900DD6F76 /* MetaData.swift */,
+				2C126DA22A492BCC0041892F /* TimeSeries */,
 				01DDBEAD2A4881D600DD6F76 /* AVDataModelable.swift */,
+				01DDBEAB2A47D37100DD6F76 /* APIError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

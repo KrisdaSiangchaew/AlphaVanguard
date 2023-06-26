@@ -27,6 +27,9 @@ public struct DailyQuote: AVDataModelable {
         }
     }
     
+    public var quoteDate: String?
+    internal var data: [String : String]?
+    
     init(date: String, quote: [String : String]) {
         self.init()
         self.quoteDate = date
@@ -38,8 +41,6 @@ public struct DailyQuote: AVDataModelable {
         self.data = [:]
     }
     
-    public var quoteDate: String?
-    internal var data: [String : String]
 }
 
 extension DailyQuote: Comparable {

@@ -9,7 +9,7 @@ import Foundation
 
 protocol AVDataModelable {
     associatedtype DataKeysEnum: CaseIterable, RawRepresentable where DataKeysEnum.RawValue: StringProtocol
-    var data: [String : String] { get set }
+    var data: [String : String]? { get set }
     var error: APIError? { get set }
 }
 
@@ -20,6 +20,6 @@ extension AVDataModelable {
     
     func value(for key: DataKeysEnum) -> String? {
         guard let keyString = key.rawValue as? String else { return nil }
-        return data[keyString]
+        return data?[keyString]
     }
 }

@@ -37,7 +37,7 @@ public struct GlobalQuote: Decodable, AVDataModelable {
         case globalQuote = "Global Quote"
     }
     
-    internal var data: [String : String]
+    internal var data: [String : String]?
     
     public init(from decoder: Decoder) throws {
         self.init()

@@ -18,7 +18,7 @@ struct TimeSeriesView: View {
                     HStack {
                         Text(quote.quoteDate.defaultString)
                             .font(.caption)
-                        Text("Open: \(quote.value(for: .open).defaultString)")
+                        Text("Adjusted Close: \(quote.value(for: .adjusted).defaultString)")
                     }
                 }
             }
